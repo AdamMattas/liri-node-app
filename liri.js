@@ -6,6 +6,8 @@ var twit = new Twitter(keys.twitterKeys);
 var spotify = require('spotify');
 var userInput1 = process.argv[2];
 var userInput2 = process.argv[3];
+var logArray = [];
+var inputArray = [];
 
 if(userInput1 == 'my-tweets'){
   tweeter();
@@ -23,10 +25,67 @@ if(userInput1 == 'my-tweets'){
   randCommand();  
 }
 
+function appendCommand(){
+
+  fs.appendFile('log.txt', "Command:\r\n" + userInput1 + " " + userInput2 + "\r\n", 'utf8', function(err){
+    
+    // If an error was experienced we say it.
+    if(err){
+      console.log(err);
+    }
+
+    // If no error is experienced, we'll log the phrase "Content Added" to our node console. 
+    else {
+      console.log("Content Added!");
+    }
+
+  })
+
+}
+
+function appendNoCommand(){
+
+  fs.appendFile('log.txt', "Command:\r\n" + userInput1 + userInput2 + "\r\n", 'utf8', function(err){
+    
+    // If an error was experienced we say it.
+    if(err){
+      console.log(err);
+    }
+
+    // If no error is experienced, we'll log the phrase "Content Added" to our node console. 
+    else {
+      console.log("Content Added!");
+    }
+
+  })
+
+}
+
+function appendResponse(){
+
+  var cleanArray = logArray.toString().replace(/,/g, "");
+
+  fs.appendFile('log.txt', "Response:\r\n" + cleanArray + "\r\n", 'utf8', function(err) {
+    
+    // If an error was experienced we say it.
+    if(err){
+      console.log(err);
+    }
+
+    // If no error is experienced, we'll log the phrase "Content Added" to our node console. 
+    else {
+      console.log("Content Added!");
+    }
+
+  })
+
+}
+
 function tweeter(){
 
   twit.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=adamfader&count=20', function(error, tweets, response){
     if(!error){
+      appendCommand();
       for(i = 0; i < tweets.length; i++){
         console.log(tweets[i].user.screen_name + ' said: ' + tweets[i].text);
       }
@@ -47,7 +106,14 @@ function spotty(){
     console.log(data.tracks.items[0].artists[0].name);
     console.log(data.tracks.items[0].name);
     console.log(data.tracks.items[0].album.name);
-    console.log(data.tracks.items[0].preview_url); 
+    console.log(data.tracks.items[0].preview_url);
+    logArray.push(data.tracks.items[0].artists[0].name + "\r\n");
+    logArray.push(data.tracks.items[0].name + "\r\n");
+    logArray.push(data.tracks.items[0].album.name + "\r\n");
+    logArray.push(data.tracks.items[0].preview_url + "\r\n");
+    console.log(logArray);
+    appendCommand();
+    appendResponse();
   });
 
 }
@@ -68,6 +134,17 @@ function movie(){
       console.log("Actors: " + JSON.parse(body)["Actors"])
       console.log("Rotten Tomatoes Rating: " + JSON.parse(body)["tomatoRating"])
       console.log("Rotten Tomatoes URL: " + JSON.parse(body)["tomatoURL"])
+      logArray.push("Title: " + JSON.parse(body)["Title"] + "\r\n");
+      logArray.push("Year: " + JSON.parse(body)["Year"] + "\r\n");
+      logArray.push("IMDB Rating: " + JSON.parse(body)["imdbRating"] + "\r\n");
+      logArray.push("Country: " + JSON.parse(body)["Country"] + "\r\n");
+      logArray.push("Plot: " + JSON.parse(body)["Plot"] + "\r\n");
+      logArray.push("Actors: " + JSON.parse(body)["Actors"] + "\r\n");
+      logArray.push("Rotten Tomatoes Rating: " + JSON.parse(body)["tomatoRating"] + "\r\n");
+      logArray.push("Rotten Tomatoes URL: " + JSON.parse(body)["tomatoURL"] + "\r\n");
+
+      appendCommand();
+      appendResponse();
     }
   });
 
@@ -87,10 +164,13 @@ function randCommand(){
 
       // We will then re-display the content with the split for aesthetics.
       //console.log(dataArr);
+      //inputArray.push(dataArr[0]);
+      //inputArray.push(dataArr[1]);
       userInput1 = dataArr[0];
       userInput2 = dataArr[1];
-      //console.log(userInput1);
-      //console.log(userInput2);
+      // console.log(userInput1);
+      // console.log(userInput2);
+      //appendNoCommand();
       if(userInput1 == 'spotify-this-song'){
         spotty();
       }else if(userInput1 == 'movie-this'){

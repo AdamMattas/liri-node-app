@@ -1,0 +1,48 @@
+Command:
+spotify-this-song "I Want it That Way"
+Response:
+Backstreet Boys
+I Want It That Way
+The Hits--Chapter One
+https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6
+
+Command:
+spotify-this-song "I Want it That Way"
+Response:
+Backstreet Boys
+I Want It That Way
+The Hits--Chapter One
+https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6
+
+Command:
+spotify-this-song "I Want it That Way"
+Response:
+Backstreet Boys
+I Want It That Way
+The Hits--Chapter One
+https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6
+
+Command:
+movie-this gremlins
+Response:
+Title: Gremlins
+Year: 1984
+IMDB Rating: 7.2
+Country: USA
+Plot: A boy inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town.
+Actors: Hoyt Axton John Louie Keye Luke Don Steele
+Rotten Tomatoes Rating: 7.3
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/gremlins/
+
+Command:
+movie-this gremlins
+Response:
+Title: Gremlins
+Year: 1984
+IMDB Rating: 7.2
+Country: USA
+Plot: A boy inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town.
+Actors: Hoyt Axton John Louie Keye Luke Don Steele
+Rotten Tomatoes Rating: 7.3
+Rotten Tomatoes URL: http://www.rottentomatoes.com/m/gremlins/
+
